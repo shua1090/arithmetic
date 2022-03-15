@@ -1,6 +1,6 @@
 import sys
 from antlr4 import *
-from antlr_generated.luxlangListener import luxlangListener
+from luxListener import luxListener
 from antlr_generated.luxlangLexer import luxlangLexer
 from antlr_generated.luxlangParser import luxlangParser
 def main(argv):
@@ -8,7 +8,7 @@ def main(argv):
     lexer = luxlangLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = luxlangParser(stream)
-    parser.addParseListener(luxlangListener())
+    parser.addParseListener(luxListener())
     tree = parser.program()
 
 if __name__ == '__main__':
