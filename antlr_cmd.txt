@@ -1,1 +1,3 @@
-antlr luxlang.g4 -o src -Dlanguage=Python3
+antlr mathlang.g4 -o antlr_generated -Dlanguage=Python3 -visitor
+antlr mathlang.g4 -o .antlr
+grun mathlang start -gui

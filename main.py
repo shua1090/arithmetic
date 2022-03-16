@@ -1,15 +1,16 @@
-import sys
 from antlr4 import *
-from luxListener import luxListener
-from antlr_generated.luxlangLexer import luxlangLexer
-from antlr_generated.luxlangParser import luxlangParser
-def main(argv):
+from mathVisitor import mathVisitor
+from antlr_generated.mathlangLexer import mathlangLexer
+from antlr_generated.mathlangParser import mathlangParser
+def main():
     input_stream = StdinStream()
-    lexer = luxlangLexer(input_stream)
+    lexer = mathlangLexer(input_stream)
     stream = CommonTokenStream(lexer)
-    parser = luxlangParser(stream)
-    parser.addParseListener(luxListener())
-    tree = parser.program()
+    parser = mathlangParser(stream)
+    tree = parser.start()
+    vis = mathVisitor()
+    output = vis.visit(tree)
+    print("Result:" , output)
 
-if __name__ == '__main__':
-    main(sys.argv)
+if __name__ == "__main__":
+    main()
